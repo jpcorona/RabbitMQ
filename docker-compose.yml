@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "jcoronan"
+      RABBITMQ_DEFAULT_PASS: "22018924"
+    ports:
+      - "5672:5672" # puerto estándar de RabbitMQ
+      - "15672:15672" # puerto de la interfaz web de administración
+    volumes:
+      - "rabbitmq_data:/var/lib/rabbitmq"
+    networks:
+      - rabbitmq_net
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  rabbitmq_net:
+    driver: bridge
